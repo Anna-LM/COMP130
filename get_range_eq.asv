@@ -1,0 +1,11 @@
+function [r, C_Ie] = get_range_eq(r_ea, r_ej)
+    
+    r = sqrt(transpose(eye(3)*r_ej - r_ea) * (eye(3)*r_ej - r_ea));
+    
+    C_Ie = [1 0 0;
+        0 ];
+    C_Ie(1,2) = omega_ie * r/c;
+    C_Ie(2,1) = -C_Ie(1,2);
+    
+    r = sqrt(transpose(C_Ie*r_ej - r_ea) * (C_Ie*r_ej - r_ea));
+end
